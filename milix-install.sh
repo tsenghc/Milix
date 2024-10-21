@@ -31,6 +31,9 @@ sudo apt install -y hostapd libpcap-dev bridge-utils ./${ARKIME_DEB}
 echo "Copy arkime config"
 sudo bash -c 'source ./milix.config && envsubst < ./arkime/config.ini > /opt/arkime/etc/config.ini'
 echo "arkime installation done"
+sudo systemctl disable arkimecapture.service
+sudo systemctl disable arkimeviewer.service
+
 
 # Ref: https://dnsmonster.dev/docs/getting-started/installation/
 echo "DNSMonster installation"
@@ -45,7 +48,6 @@ sudo bash -c 'source ./milix.config && envsubst < ./dns_monster/dnsmonster.servi
 sudo chown root:root /etc/systemd/system/dnsmonster.service
 sudo chmod 644 /etc/systemd/system/dnsmonster.service
 sudo systemctl daemon-reload
-sudo systemctl enable dnsmonster
 echo "Create dnsmonster service done"
 
 # Ref: https://blog.soracom.com/ja-jp/2022/10/31/how-to-build-wifi-ap-with-bridge-by-raspberry-pi/
@@ -54,6 +56,7 @@ sudo systemctl stop wpa_supplicant.service
 sudo systemctl mask wpa_supplicant.service
 # add pre start to kill wlan related service
 sudo systemctl unmask hostapd.service
+sudo systemctl disable hostapd.service
 cat << _EOT_ | sudo SYSTEMD_EDITOR=tee systemctl edit hostapd.service
 # Ref: /lib/systemd/system/raspberrypi-net-mods.service
 [Unit]
