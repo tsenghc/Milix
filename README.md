@@ -29,12 +29,10 @@ Arkime v5.4: [arkime/arkime: Arkime is an open source, large scale, full packet 
    在終端機中執行以下指令，開始安裝所需套件與設定：
 
    ```
-   sudo chmod +x milix-install.sh
-   ./milix-install.sh
+   /bin/bash ./milix-install.sh
    ```
 3. 執行重啟腳本(如果忘記他每日五點會自己重啟)
 4. ```
-   chmod +x ../milix_service_restart.sh
    $HOME/milix_service_restart.sh
    ```
 5. **啟動系統**
