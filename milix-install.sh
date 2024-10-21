@@ -4,7 +4,7 @@
 source milix.config
 
 # Check if all variables are set
-if [[ -z "$WIFI_SSID" || -z "$WIFI_PASSWORD" || -z "$WIFI_BAND" || -z "$ADMIN_PASS" ]]; then
+if [[ -z "$WIFI_SSID" || -z "$WIFI_PASSWORD" || -z "$WIFI_BAND" ]]; then
     echo "Error: One or more configuration variables are empty."
     exit 1
 fi
