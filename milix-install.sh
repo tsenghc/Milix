@@ -25,6 +25,7 @@ if [ -f "${ARKIME_DEB}" ]; then
 else
     echo "File ${ARKIME_DEB} does not exist, download now."
     wget ${ARKIME_DEB_URL}
+fi
 sudo apt update;
 sudo apt install -y hostapd libpcap-dev bridge-utils ./${ARKIME_DEB}
 echo "Copy arkime config"
