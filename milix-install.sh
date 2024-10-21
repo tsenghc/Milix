@@ -30,7 +30,8 @@ sudo apt update;
 sudo apt install -y hostapd libpcap-dev bridge-utils ./${ARKIME_DEB}
 echo "Copy arkime config"
 sudo bash -c 'source ./milix.config && envsubst < ./arkime/config.ini > /opt/arkime/etc/config.ini'
-sudo bash -c 'echo 'OPTIONS="--insecure"' >> /opt/arkime/etc/capture.env'
+sudo bash -c 'echo "OPTIONS=\"--insecure\"" >> /opt/arkime/etc/capture.env'
+sudo bash -c 'echo "OPTIONS=\"--insecure\"" >> /opt/arkime/etc/viewer.env'
 echo "arkime installation done"
 sudo systemctl disable arkimecapture.service
 sudo systemctl disable arkimeviewer.service
