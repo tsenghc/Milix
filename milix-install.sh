@@ -20,11 +20,17 @@ fi
 
 echo "Milix Installation"
 echo "Package install"
-wget https://github.com/arkime/arkime/releases/download/v5.4.0/arkime_5.4.0-1.debian12_arm64.deb
+
+ARKIME_DEB="arkime_5.4.0-1.debian12_arm64.deb"
+if [ -f "${ARKIME_DEB}" ]; then
+    echo "File ${ARKIME_DEB} exists, skip download."
+else
+    echo "File ${ARKIME_DEB} does not exist, download now."
+    wget https://github.com/arkime/arkime/releases/download/v5.4.0/arkime_5.4.0-1.debian12_arm64.deb
 sudo apt update;
-sudo apt install -y hostapd libpcap-dev bridge-utils ./arkime_5.4.0-1.debian12_arm64.deb
+sudo apt install -y hostapd libpcap-dev bridge-utils ./${ARKIME_DEB}
 echo "Copy arkime config"
-sudo envsubst < ./arkime/config.ini > /opt/arkime/etc/config.ini
+sudo bash -c 'source ./milix.config && envsubst < ./arkime/config.ini > /opt/arkime/etc/config.ini'
 echo "arkime installation done"
 
 # Ref: https://dnsmonster.dev/docs/getting-started/installation/
@@ -33,12 +39,12 @@ sudo chown root:root ./dns_monster/dnsmonster
 sudo chmod 755 ./dns_monster/dnsmonster
 sudo cp ./dns_monster/dnsmonster /usr/sbin
 echo "Copy dnsmonster config"
-sudo envsubst < ./dns_monster/dnsmonster.ini > /etc/dnsmonster.ini
+sudo bash -c 'source ./milix.config && envsubst < ./dns_monster/dnsmonster.ini > /etc/dnsmonster.ini'
 echo "dnsmonster installation done"
 echo "Create dnsmonster service"
-sudo envsubst < ./dns_monster/dnsmonster.service > /etc/systemd/system/dnsmonster.service
-sudo chown root:root ./dns_monster/dnsmonster.service
-sudo chmod 644 ./dns_monster/dnsmonster.service
+sudo bash -c 'source ./milix.config && envsubst < ./dns_monster/dnsmonster.service > /etc/systemd/system/dnsmonster.service'
+sudo chown root:root /etc/systemd/system/dnsmonster.service
+sudo chmod 644 /etc/systemd/system/dnsmonster.service
 sudo systemctl daemon-reload
 sudo systemctl enable dnsmonster
 echo "Create dnsmonster service done"
