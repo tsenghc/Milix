@@ -20,13 +20,11 @@ fi
 
 echo "Milix Installation"
 echo "Package install"
-
-ARKIME_DEB="arkime_5.4.0-1.debian12_arm64.deb"
 if [ -f "${ARKIME_DEB}" ]; then
     echo "File ${ARKIME_DEB} exists, skip download."
 else
     echo "File ${ARKIME_DEB} does not exist, download now."
-    wget https://github.com/arkime/arkime/releases/download/v5.4.0/arkime_5.4.0-1.debian12_arm64.deb
+    wget ${ARKIME_DEB_URL}
 sudo apt update;
 sudo apt install -y hostapd libpcap-dev bridge-utils ./${ARKIME_DEB}
 echo "Copy arkime config"
