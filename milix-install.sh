@@ -48,6 +48,7 @@ echo "Create dnsmonster service done"
 sudo systemctl stop wpa_supplicant.service
 sudo systemctl mask wpa_supplicant.service
 # add pre start to kill wlan related service
+sudo systemctl unmask hostapd.service
 cat << _EOT_ | sudo SYSTEMD_EDITOR=tee systemctl edit hostapd.service
 # Ref: /lib/systemd/system/raspberrypi-net-mods.service
 [Unit]
