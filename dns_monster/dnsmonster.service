@@ -1,0 +1,13 @@
+[Unit]
+Description=DNSMonster Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/dnsmonster --config /etc/dnsmonster.ini
+Restart=always
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
