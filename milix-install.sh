@@ -30,6 +30,7 @@ sudo apt update;
 sudo apt install -y hostapd libpcap-dev bridge-utils ./${ARKIME_DEB}
 echo "Copy arkime config"
 sudo bash -c 'source ./milix.config && envsubst < ./arkime/config.ini > /opt/arkime/etc/config.ini'
+sudo bash -c 'echo 'OPTIONS="--insecure"' >> /opt/arkime/etc/capture.env'
 echo "arkime installation done"
 sudo systemctl disable arkimecapture.service
 sudo systemctl disable arkimeviewer.service
@@ -121,4 +122,5 @@ sudo systemctl --no-pager status hostapd.service
 EOF
 # add the crontab
 ( crontab -l; echo "30 5 * * * /bin/bash $HOME/milix_service_restart.sh" ) | crontab -
+sudo chmod +x $HOME/milix_service_restart.sh
 echo "Installed the cron job!"
