@@ -1,5 +1,11 @@
 # Milix
 
+
+<p align="center">
+  <img src="https://github.com/tsenghc/Milix/blob/main/image/milix_logo.png" alt="MilixLOGO" width='50%' height='50%'/>
+</p>
+
+
 ## 專案簡介
 
 隨著物聯網（IoT）設備的普及，安全性成為一大關注焦點。本專案旨在透過簡易的硬體與開源工具，提供一套有效的 IoT 安全防護方案，保護您的智慧家居免受各類網路威脅。
@@ -47,7 +53,6 @@ collector_traffic_log: 收集期間內的 arkime 流量紀錄
 analyzer_traffic_trend: 分析 arkime 的流量趨勢
 
 analyzer_dns_and_traffic: 分析 DNS 紀錄對應到的 IP 清單，並合併存取次數
-
 
 ## 架構圖
 
